@@ -22,7 +22,7 @@ RUN apt-get install -y --no-install-recommends libpq-dev libz-dev \
 ARG INSTALL_COMPRESSION=false
 RUN if [ ${INSTALL_COMPRESSION} = true ]; then \
     # Install zip, bz2 and requirements
-    apt-get install -y --no-install-recommends libbz2-dev zlib1g-dev \
+    apt-get install -y --no-install-recommends libbz2-dev zlib1g-dev libzip-dev \
     && docker-php-ext-install zip \
     bz2 \
     ;fi
