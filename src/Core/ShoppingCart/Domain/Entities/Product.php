@@ -2,6 +2,8 @@
 
 namespace App\Core\ShoppingCart\Domain\Entities;
 
+use Exception;
+
 class Product
 {
     private string $name;
@@ -10,18 +12,31 @@ class Product
     private string $image;
     private int $quantity;
 
-    public function __construct(
-        string $name,
-        float $price,
-        string $slug,
-        string $image,
-        int $quantity
-    ) {
+    // public function __construct(
+    //     string $name = "",
+    //     float $price,
+    //     string $slug,
+    //     string $image,
+    //     int $quantity
+    // ) {
+    //     $this->name = $name;
+    //     $this->price = $price;
+    //     $this->slug = $slug;
+    //     $this->image = $image;
+    //     $this->quantity = $quantity;
+    // }
+
+    public function setName(string $name)
+    {
+        if(empty($name)) {
+            throw new \InvalidArgumentException("Nome não pode ser nulo");
+        }
+
+        if(strlen($name) < 2) {
+            throw new \InvalidArgumentException("Nome do produto deve conter mais de dois caracteres");
+        }
+
         $this->name = $name;
-        $this->price = $price;
-        $this->slug = $slug;
-        $this->image = $image;
-        $this->quantity = $quantity;
     }
 
     public function getName(): string
