@@ -4,6 +4,7 @@ namespace AppTest\ShoppingCart\Domain\Entities;
 
 use App\Core\ShoppingCart\Domain\Entities\Product;
 use InvalidArgumentException;
+use TypeError;
 use PHPUnit\Framework\TestCase;
 
 class ProductTest extends TestCase
@@ -44,6 +45,15 @@ class ProductTest extends TestCase
         $price = -1.0;
 
         $product->setPrice($price);
+    }
+
+    public function testIfPriceIsStringNotAllow()
+    {
+        $product = New Product();
+
+        $this->expectException(TypeError::class);
+
+        $product->setPrice('Testando');
     }
 
 

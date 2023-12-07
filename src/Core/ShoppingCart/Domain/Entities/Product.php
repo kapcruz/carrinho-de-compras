@@ -51,6 +51,11 @@ class Product
         {
             throw new \InvalidArgumentException("O preço não pode ser negativo");
         }
+        
+        if(!is_numeric($price))
+        {
+            throw new \InvalidArgumentException("O preço precisa estar em formato numérico");
+        }
 
         $this->price = $price;
     }
