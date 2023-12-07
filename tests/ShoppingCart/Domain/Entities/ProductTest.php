@@ -33,4 +33,18 @@ class ProductTest extends TestCase
         $validSlug = preg_match('/^[a-z0-9]+(-?[a-z0-9]+)*$/i', $slug);
         $this->assertEquals(true, $validSlug);
     }
+    
+
+    public function testNegativePriceNotAllow()
+    {
+        $product = New Product();
+
+        $this->expectException(InvalidArgumentException::class);
+
+        $price = -1.0;
+
+        $product->setPrice($price);
+    }
+
+
 }

@@ -43,6 +43,17 @@ class Product
     {
         return $this->name;
     }
+    
+    public function setPrice(float $price): float
+    {
+        
+        if($price < 0)
+        {
+            throw new \InvalidArgumentException("O preço não pode ser negativo");
+        }
+
+        $this->price = $price;
+    }
 
     public function getPrice(): float
     {
