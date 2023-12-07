@@ -64,6 +64,27 @@ class Product
     {
         return $this->price;
     }
+    
+    public function setQuantity(int $quantity): int
+    {
+        
+        if($quantity < 0)
+        {
+            throw new \InvalidArgumentException("A quantidade não pode ser negativa");
+        }
+        
+        if(!is_numeric($quantity))
+        {
+            throw new \InvalidArgumentException("A quantidade precisa estar em formato numérico");
+        }
+
+        $this->quantity = $quantity;
+    }
+
+    public function getQuantity(): int
+    {
+        return $this->quantity;
+    }
 
     public function getSlug(): string
     {

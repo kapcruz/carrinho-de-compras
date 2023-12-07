@@ -55,6 +55,28 @@ class ProductTest extends TestCase
 
         $product->setPrice('Testando');
     }
+    
+
+    public function testNegativeQuantityNotAllow()
+    {
+        $product = New Product();
+
+        $this->expectException(InvalidArgumentException::class);
+
+        $quantity = -1.0;
+
+        $product->setQuantity($quantity);
+    }
+
+    public function testIfQuantityIsStringNotAllow()
+    {
+        $product = New Product();
+
+        $this->expectException(TypeError::class);
+
+        $product->setQuantity('Testando');
+    }
+
 
 
 }
