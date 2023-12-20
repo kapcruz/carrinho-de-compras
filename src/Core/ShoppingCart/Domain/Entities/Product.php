@@ -12,20 +12,6 @@ class Product
     private string $image;
     private int $quantity;
 
-    // public function __construct(
-    //     string $name = "",
-    //     float $price,
-    //     string $slug,
-    //     string $image,
-    //     int $quantity
-    // ) {
-    //     $this->name = $name;
-    //     $this->price = $price;
-    //     $this->slug = $slug;
-    //     $this->image = $image;
-    //     $this->quantity = $quantity;
-    // }
-
     public function setName(string $name)
     {
         if(empty($name)) {
@@ -90,9 +76,9 @@ class Product
     {
         $name = $this->name;
 
-        $validName = $this->slugify($name);
+        $this->slug = $this->slugify($name);
 
-        return $validName;
+        return $this->slug;
     }
 
     public function setImage(string $image)
@@ -111,6 +97,11 @@ class Product
         }
 
         $this->image = $image;
+    }
+
+    public function getImage(): string
+    {
+        return $this->image;
     }
 
     private function slugify( $string, $separator = '-' )
