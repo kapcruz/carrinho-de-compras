@@ -77,6 +77,12 @@ class ProductTest extends TestCase
         $product->setQuantity('Testando');
     }
 
+    public function testIfImageExtensionIsInvalid()
+    {
+        $product = New Product();
 
-
+        $this->expectException(InvalidArgumentException::class);
+        
+        $product->setImage('teste.pdf');
+    }
 }

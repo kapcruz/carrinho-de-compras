@@ -95,6 +95,24 @@ class Product
         return $validName;
     }
 
+    public function setImage(string $image)
+    {
+        $allowedExtensions = [
+            'png',
+            'jpg',
+            'jpeg'
+        ];
+
+        $splited = explode('.', $image);
+        $extension = end($splited);
+
+        if (!in_array($extension, $allowedExtensions)) {
+            throw new \InvalidArgumentException("A imagem deve estar no formato png, jpg ou jpeg.");
+        }
+
+        $this->image = $image;
+    }
+
     private function slugify( $string, $separator = '-' )
     {
         $accents_regex = '~&([a-z]{1,2})(?:acute|cedil|circ|grave|lig|orn|ring|slash|th|tilde|uml);~i';
