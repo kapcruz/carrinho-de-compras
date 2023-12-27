@@ -1,6 +1,9 @@
 {
     "require": {
-        "phpunit/phpunit": "^10.4"
+        "phpunit/phpunit": "^10.4",
+        "illuminate/database": "^10.39",
+        "slim/slim": "4.*",
+        "slim/psr7": "^1.6"
     },
     "autoload": {
         "psr-4": {
