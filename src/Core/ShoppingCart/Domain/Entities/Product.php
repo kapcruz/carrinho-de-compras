@@ -31,7 +31,7 @@ class Product
         return $this->name;
     }
     
-    public function setPrice(float $price): float
+    public function setPrice(float $price)
     {
         
         if($price < 0)
@@ -52,7 +52,7 @@ class Product
         return $this->price;
     }
     
-    public function setQuantity(int $quantity): int
+    public function setQuantity(int $quantity)
     {
         
         if($quantity < 0)
