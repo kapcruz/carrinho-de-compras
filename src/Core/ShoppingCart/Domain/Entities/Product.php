@@ -11,6 +11,7 @@ class Product
     private string $slug;
     private string $image;
     private int $quantity;
+    private string $code;
 
     public function setName(string $name)
     {
@@ -122,5 +123,23 @@ class Product
             'name' => $this->getName(),
             'price' => $this->getPrice(),
         ];
+    }
+
+    public function setCode(string $code)
+    {
+        if (empty($code)) {
+            throw new \InvalidArgumentException("Código não pode ser nulo");
+        }
+        
+        if (preg_match("/[^a-zA-Z0-9]/u", $code)) {
+            throw new \InvalidArgumentException("Código não pode conter caracteres especiais");
+        }
+
+        $this->code = $code;
+    }
+
+    public function getCode(): string
+    {
+        return $this->code;
     }
 }

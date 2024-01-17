@@ -85,4 +85,22 @@ class ProductTest extends TestCase
         
         $product->setImage('teste.pdf');
     }
+
+    public function testIfCodeIsEmpty()
+    {
+        $product = New Product();
+
+        $this->expectException(InvalidArgumentException::class);
+        
+        $product->setCode('');
+    }
+
+    public function testIfCodeHasSpecialCaracter()
+    {
+        $product = New Product();
+
+        $this->expectException(InvalidArgumentException::class);
+        
+        $product->setCode('asd123#');
+    }
 }
