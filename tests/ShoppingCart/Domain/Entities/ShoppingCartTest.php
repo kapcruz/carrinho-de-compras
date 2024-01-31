@@ -16,14 +16,14 @@ class ShoppingCartTest extends TestCase
         $shoppingCart->add($product);
         self::assertCount(1, $shoppingCart->getItems());
     }
-    
+
     public function testIfItemIsRemoved()
     {
         $product = new Product();
         $product->setCode('01');
 
         $shoppingCart = new ShoppingCart();
-        
+
         $shoppingCart->add($product);
         $shoppingCart->remove($product->getCode());
 
@@ -32,21 +32,47 @@ class ShoppingCartTest extends TestCase
 
     public function testIfTotalPriceIsCorrect()
     {
+        $correctPrice = 18.51;
+        $total = $this->createShoppingCart()->getTotalPrice();
+        self::assertEquals($correctPrice, $total);
+    }
+
+    public function testRemoveAllItems()
+    {
+        $shoppingCart = $this->createShoppingCart();
+        $shoppingCart->removeAll();
+        $totalItems = count($shoppingCart->getItems());
+        $this->assertEquals(0, $totalItems);
+    }
+
+    public function testIncreaseQuantityItem()
+    {
+        $shoppingCart = $this->createShoppingCart();
+        $code = 1234;
+        $expectedTotalPrice = 24.02;
+        $shoppingCart->increaseQuantityItemByCode($code);
+        $totalPrice = $shoppingCart->getTotalPrice();
+        $this->assertEquals($expectedTotalPrice, $totalPrice);
+    }
+
+    private function createShoppingCart()
+    {
         $priceProduct1 = 5.51;
         $product1 = new Product();
         $product1->setPrice($priceProduct1);
-        
+        $product1->setQuantity(1);
+        $product1->setCode(1234);
+
         $priceProduct2 = 13.00;
         $product2 = new Product();
         $product2->setPrice($priceProduct2);
-
-        $correctPrice = $priceProduct1 + $priceProduct2;
+        $product2->setQuantity(1);
+        $product2->setCode(5678);
 
         $shoppingCart = new ShoppingCart();
-        $shoppingCart->add($product1);        
+        $shoppingCart->add($product1);
         $shoppingCart->add($product2);
-        
-        $total = $shoppingCart->getTotalPrice();
-        self::assertEquals($correctPrice, $total);
+
+        return $shoppingCart;
     }
 }

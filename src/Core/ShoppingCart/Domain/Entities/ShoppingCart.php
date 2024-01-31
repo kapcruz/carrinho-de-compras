@@ -2,6 +2,7 @@
 
 namespace App\Core\ShoppingCart\Domain\Entities;
 
+use stdClass;
 
 class ShoppingCart
 {
@@ -29,14 +30,42 @@ class ShoppingCart
         return $this->items;
     }
 
+    public function getItem($code)
+    {
+        $items = $this->getItems();
+        $result = new Product();
+
+        foreach ($items as $item) {
+            if ($item->getCode() === $code) {
+                $result = $item;
+                break;
+            }
+        }
+        return $result;
+    }
+
     public function getTotalPrice()
     {
         $total = 0;
 
         foreach ($this->items as $item) {
-            $total += $item->getPrice();
+            $total += $item->getPrice() * $item->getQuantity();
         }
 
-        return $total;
+        return round($total, 2);
+    }
+
+    public function removeAll()
+    {
+        $this->items = [];
+    }
+
+    public function increaseQuantityItemByCode($code)
+    {
+        $item = $this->getItem($code);
+        $currentQuantity = $item->getQuantity();
+        $this->remove($code);
+        $item->setQuantity($currentQuantity+1);
+        $this->add($item);
     }
 }
