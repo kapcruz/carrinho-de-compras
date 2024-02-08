@@ -72,4 +72,13 @@ class ShoppingCart
         $item->setQuantity($currentQuantity+1);
         $this->add($item);
     }
+
+    public function decreaseQuantityItemByCode($code)
+    {
+        $item = $this->getItem($code);
+        $currentQuantity = $item->getQuantity();
+        $this->remove($code);
+        $item->setQuantity($currentQuantity-1);
+        $this->add($item);
+    }
 }

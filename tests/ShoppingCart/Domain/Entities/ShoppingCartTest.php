@@ -55,6 +55,17 @@ class ShoppingCartTest extends TestCase
         $this->assertEquals($expectedTotalPrice, $totalPrice);
     }
 
+    public function testDecreaseQuantityItem()
+    {
+        $shoppingCart = $this->createShoppingCart();
+        $code = 1234;
+        $expectedTotalPrice = 18.51;
+        $shoppingCart->increaseQuantityItemByCode($code);
+        $shoppingCart->decreaseQuantityItemByCode($code);
+        $totalPrice = $shoppingCart->getTotalPrice();
+        $this->assertEquals($expectedTotalPrice, $totalPrice);
+    }
+
     private function createShoppingCart()
     {
         $priceProduct1 = 5.51;
