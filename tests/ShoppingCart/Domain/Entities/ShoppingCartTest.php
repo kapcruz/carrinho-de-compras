@@ -59,12 +59,16 @@ class ShoppingCartTest extends TestCase
     {
         $priceProduct1 = 5.51;
         $product1 = new Product();
+        $product1->setName('Produto 1');
+        $product1->setImage('produto1.png');
         $product1->setPrice($priceProduct1);
         $product1->setQuantity(1);
         $product1->setCode(1234);
 
         $priceProduct2 = 13.00;
         $product2 = new Product();
+        $product2->setName('Produto 1');
+        $product2->setImage('produto2.png');
         $product2->setPrice($priceProduct2);
         $product2->setQuantity(1);
         $product2->setCode(5678);

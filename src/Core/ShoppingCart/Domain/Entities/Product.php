@@ -6,12 +6,12 @@ use Exception;
 
 class Product
 {
-    private string $name;
-    private float $price;
-    private string $slug;
-    private string $image;
-    private int $quantity;
-    private string $code;
+    private string $name = '';
+    private float $price = 0;
+    private string $slug = '';
+    private string $image = '';
+    private int $quantity = 0;
+    private string $code = '';
 
     public function setName(string $name)
     {

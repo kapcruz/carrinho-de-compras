@@ -36,8 +36,12 @@ class ShoppingCart
         $result = new Product();
 
         foreach ($items as $item) {
-            if ($item->getCode() === $code) {
-                $result = $item;
+            if ($item->getCode() == $code) {
+                $result->setName($item->getName());
+                $result->setPrice($item->getPrice());
+                $result->setQuantity($item->getQuantity());
+                $result->setImage($item->getImage());
+                $result->setCode($item->getCode());
                 break;
             }
         }
