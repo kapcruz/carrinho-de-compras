@@ -26,7 +26,7 @@
         "ext-json": "*",
         "guzzlehttp/psr7": "^2",
         "laminas/laminas-diactoros": "^3.3",
-        "monolog/monolog": "^2.8",
+        "monolog/monolog": "^3.5",
         "nyholm/psr7": "^1.8",
         "nyholm/psr7-server": "^1.1",
         "php-di/php-di": "^6.4",
