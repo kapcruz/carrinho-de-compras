@@ -3,18 +3,24 @@
 ###############################################################################
 version: '3.1'
 services:
-    mysql:
-        image: 'mysql:8.0'
+    mariadb:
+        image: 'mariadb:latest'
         working_dir: /application
         volumes:
             - '.:/application'
         environment:
-            - MYSQL_ROOT_PASSWORD=root
-            - MYSQL_DATABASE=shopcart
-            - MYSQL_USER=root
-            - MYSQL_PASSWORD=root
+            - MARIADB_ROOT_PASSWORD=carrinho_root
+            - MARIADB_USER=admin
+            - MARIADB_PASSWORD=1234
         ports:
             - '11002:3306'
+    phpmyadmin:
+        image: phpmyadmin:latest
+        restart: always
+        ports:
+            - 11003:80
+        environment:
+            - PMA_ARBITRARY=1
 
     webserver:
         image: 'nginx:alpine'
