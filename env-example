@@ -1,10 +1,10 @@
 #-------#
 # MARIADB #
 #-------#
-MARIADB_USER="admin"
-MARIADB_PASSWORD="1234"
+MARIADB_USER="root"
+MARIADB_PASSWORD="carrinho_root"
 MARIADB_DATABASE="shopping_cart"
 MARIADB_HOST="carrinho-de-compras_mariadb_1"
-MARIADB_PORT="11002"
+MARIADB_PORT="3306"
 MARIADB_CHARSET="utf8"
 MARIADB_COLLATION="utf8_unicode_ci"
