@@ -1,19 +1,22 @@
 <?php
 
 use Illuminate\Container\Container;
-use Illuminate\Database\Capsule\Manager as Capsule;
 use Illuminate\Events\Dispatcher;
+use Illuminate\Database\Capsule\Manager as Capsule;
+
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../..');
+$dotenv->load();
 
 $capsule = new Capsule;
 
 $capsule->addConnection([
     'driver' => 'mysql',
-    'host' => 'carrinho-de-compras-mariadb-1',
-    'database' => 'shopping_cart',
-    'username' => 'root',
-    'password' => 'carrinho_root',
-    'charset' => 'utf8',
-    'collation' => 'utf8_unicode_ci',
+    'host' => $_ENV['MARIADB_HOST'],
+    'database' => $_ENV['MARIADB_DATABASE'],
+    'username' => $_ENV['MARIADB_USER'],
+    'password' => $_ENV['MARIADB_PASSWORD'],
+    'charset' => $_ENV['MARIADB_CHARSET'],
+    'collation' => $_ENV['MARIADB_COLLATION'],
     'prefix' => '',
 ]);
 
