@@ -2,41 +2,57 @@
 
 namespace AppTest\ShoppingCart\Domain\Entities;
 
+use App\Core\ShoppingCart\Domain\Entities\Cpf;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use App\Core\ShoppingCart\Domain\Entities\User;
 
 class UserTest extends TestCase
 {
+
+    
+
+    private User $user;
+
+    public function setUp(): void
+    {
+        $this->user = $this->createUser();
+        parent::setUp();
+    }
+
     public function testNameNotEmpty()
     {
-        $user = New User();
 
         $this->expectException(InvalidArgumentException::class);
-        $user->setName("");
+        $this->user->setName("");
     }
 
     public function testEmailNotNull()
     {
-        $user = New User();
 
         $this->expectException(InvalidArgumentException::class);
-        $user->setEmail("");
+        $this->user->setEmail("");
     }
 
     public function testEmailInvalid()
     {
-        $user = New User();
 
         $this->expectException(InvalidArgumentException::class);
-        $user->setEmail("testeemail_invalido.com");
+        $this->user->setEmail("testeemail_invalido.com");
     }
 
     public function testEmailIsValid()
     {
-        $user = New User();
-
         $this->expectNotToPerformAssertions();
-        $user->setEmail("testeemail_valido@teste.com");
+        $this->user->setEmail("testeemail_valido@teste.com");
+    }
+
+    private function createUser()
+    {
+        $name = 'Robert Garcia';
+        $email = 'robert_garcia@email.com'; 
+        $cpf = new Cpf('64761343028');
+        $user = new User($name, $email, $cpf);
+        return $user;
     }
 }

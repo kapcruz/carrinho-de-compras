@@ -15,6 +15,13 @@ class User
     private int $role;
     private int $status;
 
+    public function __construct(string $name, string $email, Cpf $cpf)
+    {
+        $this->name = $name;
+        $this->email = $email;
+        $this->cpf = $cpf;
+    }
+
     public function getName()
     {
         return $this->name;
