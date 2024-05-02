@@ -11,7 +11,7 @@ class ProductTest extends TestCase
 {
     public function testNameNotNull()
     {
-        $product = New Product();
+        $product = $this->createProduct();
 
         $this->expectException(InvalidArgumentException::class);
 
@@ -20,7 +20,7 @@ class ProductTest extends TestCase
 
     public function testNameMoreThen2Caracteres()
     {
-        $product = New Product();
+        $product = $this->createProduct();
 
         $this->expectException(InvalidArgumentException::class);
 
@@ -28,7 +28,7 @@ class ProductTest extends TestCase
     }
 
     public function testSlugDoesNotAllowSpecialCharacters(){
-        $product = New Product();
+        $product = $this->createProduct();
         $product->setName("Televisão Samsung 39' polegadas");
         $slug = $product->getSlug();
         $validSlug = preg_match('/^[a-z0-9]+(-?[a-z0-9]+)*$/i', $slug);
@@ -38,7 +38,7 @@ class ProductTest extends TestCase
 
     public function testNegativePriceNotAllow()
     {
-        $product = New Product();
+        $product = $this->createProduct();
 
         $this->expectException(InvalidArgumentException::class);
 
@@ -49,7 +49,7 @@ class ProductTest extends TestCase
 
     public function testIfPriceIsStringNotAllow()
     {
-        $product = New Product();
+        $product = $this->createProduct();
 
         $this->expectException(TypeError::class);
 
@@ -59,7 +59,7 @@ class ProductTest extends TestCase
 
     public function testNegativeQuantityNotAllow()
     {
-        $product = New Product();
+        $product = $this->createProduct();
 
         $this->expectException(InvalidArgumentException::class);
 
@@ -70,7 +70,7 @@ class ProductTest extends TestCase
 
     public function testIfQuantityIsStringNotAllow()
     {
-        $product = New Product();
+        $product = $this->createProduct();
 
         $this->expectException(TypeError::class);
 
@@ -79,7 +79,7 @@ class ProductTest extends TestCase
 
     public function testIfImageExtensionIsInvalid()
     {
-        $product = New Product();
+        $product = $this->createProduct();
 
         $this->expectException(InvalidArgumentException::class);
         
@@ -88,7 +88,7 @@ class ProductTest extends TestCase
 
     public function testIfCodeIsEmpty()
     {
-        $product = New Product();
+        $product = $this->createProduct();
 
         $this->expectException(InvalidArgumentException::class);
         
@@ -97,10 +97,15 @@ class ProductTest extends TestCase
 
     public function testIfCodeHasSpecialCaracter()
     {
-        $product = New Product();
+        $product = $this->createProduct();
 
         $this->expectException(InvalidArgumentException::class);
         
         $product->setCode('asd123#');
+    }
+
+    private function createProduct()
+    {
+        return New Product('Fulano', 1.5, 'teste3.pdf', 3, 'abcd12');         
     }
 }

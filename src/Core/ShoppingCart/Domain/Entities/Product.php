@@ -13,6 +13,15 @@ class Product
     private int $quantity = 0;
     private string $code = '';
 
+    public function __construct(string $name, float $price, string $image, int $quantity, string $code)
+    {
+        $this->name = $name;
+        $this->price = $price;
+        $this->image = $image;
+        $this->quantity = $quantity;
+        $this->code = $code;
+    }
+
     public function setName(string $name)
     {
         if(empty($name)) {

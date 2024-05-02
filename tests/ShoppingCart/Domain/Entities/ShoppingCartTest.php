@@ -10,7 +10,7 @@ class ShoppingCartTest extends TestCase
 {
     public function testIfItemIsAdded()
     {
-        $product = new Product();
+        $product = $this->createProduct();
         $shoppingCart = new ShoppingCart();
 
         $shoppingCart->add($product);
@@ -19,7 +19,7 @@ class ShoppingCartTest extends TestCase
 
     public function testIfItemIsRemoved()
     {
-        $product = new Product();
+        $product = $this->createProduct();
         $product->setCode('01');
 
         $shoppingCart = new ShoppingCart();
@@ -68,26 +68,18 @@ class ShoppingCartTest extends TestCase
 
     private function createShoppingCart()
     {
-        $priceProduct1 = 5.51;
-        $product1 = new Product();
-        $product1->setName('Produto 1');
-        $product1->setImage('produto1.png');
-        $product1->setPrice($priceProduct1);
-        $product1->setQuantity(1);
-        $product1->setCode(1234);
-
-        $priceProduct2 = 13.00;
-        $product2 = new Product();
-        $product2->setName('Produto 1');
-        $product2->setImage('produto2.png');
-        $product2->setPrice($priceProduct2);
-        $product2->setQuantity(1);
-        $product2->setCode(5678);
+        $product1 = new Product('Produto 1', 5.51, 'produto1.png', 1, 1234);
+        $product2 = new Product('Produto 2', 13.00, 'produto2.png', 1, 5678);
 
         $shoppingCart = new ShoppingCart();
         $shoppingCart->add($product1);
         $shoppingCart->add($product2);
 
         return $shoppingCart;
+    }
+
+    private function createProduct()
+    {
+        return New Product('Fulano', 1.5, 'teste3.pdf', 3, 'abcd12');         
     }
 }

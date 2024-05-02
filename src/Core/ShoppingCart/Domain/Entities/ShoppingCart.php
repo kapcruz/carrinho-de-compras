@@ -33,19 +33,13 @@ class ShoppingCart
     public function getItem($code)
     {
         $items = $this->getItems();
-        $result = new Product();
-
+        
         foreach ($items as $item) {
             if ($item->getCode() == $code) {
-                $result->setName($item->getName());
-                $result->setPrice($item->getPrice());
-                $result->setQuantity($item->getQuantity());
-                $result->setImage($item->getImage());
-                $result->setCode($item->getCode());
-                break;
+                return $item;
             }
         }
-        return $result;
+        return false;
     }
 
     public function getTotalPrice()
