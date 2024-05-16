@@ -4,16 +4,17 @@ namespace App\Core\ShoppingCart\Domain\Entities;
 
 use InvalidArgumentException;
 
-class User 
+class User
 {
     private Cpf $cpf;
-    
+
     private string $name;
     private string $email;
     private string $phone;
     private string $cell_phone;
     private int $role;
     private int $status;
+    private array $address;
 
     public function __construct(string $name, string $email, Cpf $cpf)
     {
@@ -46,12 +47,13 @@ class User
         if (empty($email)) {
             throw new InvalidArgumentException('O e-mail é obrigatório.');
         }
-        
+
         if (filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
             throw new InvalidArgumentException('O e-mail é obrigatório.');
         }
 
         $this->email = $email;
+        return $this;
     }
 
     public function getCpf()
@@ -62,6 +64,7 @@ class User
     public function setCpf(Cpf $cpf)
     {
         $this->cpf = $cpf;
+        return $this;
     }
 
     public function getPhone()
@@ -72,6 +75,7 @@ class User
     public function setPhone(string $phone)
     {
         $this->phone = $phone;
+        return $this;
     }
 
     public function getCellPhone()
@@ -82,5 +86,17 @@ class User
     public function setCellPhone(string $cell_phone)
     {
         $this->cell_phone = $cell_phone;
+        return $this;
+    }
+
+    public function setAddress(array $address)
+    {
+        $this->address = $address;
+        return $this;
+    }
+
+    public function getAddress(): array
+    {
+        return $this->address;
     }
 }

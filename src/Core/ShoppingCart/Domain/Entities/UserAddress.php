@@ -6,8 +6,6 @@ use InvalidArgumentException;
 
 class UserAddress
 {
-    private User $user;
-
     private string $city;
     private string $state;
     private string $district;
@@ -18,7 +16,6 @@ class UserAddress
     private string $reference;
 
     public function __construct(
-        User $user,
         string $city,
         string $state,
         string $district,
@@ -28,7 +25,6 @@ class UserAddress
         string $number,
         string $reference
     ) {
-        $this->user = $user;
         $this->city = $city;
         $this->state = $state;
         $this->district = $district;
@@ -37,20 +33,6 @@ class UserAddress
         $this->address = $address;
         $this->number = $number;
         $this->reference = $reference;
-    }
-
-    public function getUser()
-    {
-        return $this->user;
-    }
-
-    public function setUser(User $user)
-    {
-        if (empty($user)) {
-            throw new InvalidArgumentException('O usuário é obrigatório.');
-        }
-        
-        return $this->user = $user;
     }
 
     public function getCity()

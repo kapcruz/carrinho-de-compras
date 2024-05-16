@@ -14,7 +14,6 @@ class UserAddressTest extends TestCase
 
     public function setUp(): void
     {
-        $this->user = $this->createUser();
         parent::setUp();
     }
 
@@ -53,9 +52,9 @@ class UserAddressTest extends TestCase
         $userAddress->setAddress('');
     }
 
-    private function createUserAddress() {
+    private function createUserAddress()
+    {
 
-        $user = $this->user;
         $city = 'Brasília';
         $state = "DF";
         $address = 'Quadra SHCES Quadra 1301 Bloco B';
@@ -65,23 +64,8 @@ class UserAddressTest extends TestCase
         $reference = '';
         $number = '';
 
-        $userAddress = new UserAddress($user, $city, $state, $district, $zipCode, $complement, $address, $number, $reference);
+        $userAddress = new UserAddress($city, $state, $district, $zipCode, $complement, $address, $number, $reference);
 
         return $userAddress;
-
     }
-
-    private function createUser()
-    {
-
-        $name = 'Analise F Carvalho';
-        $email = "analise@gmail.com";
-        $cpf = new Cpf('04533422055');
-        $user = new User($name, $email, $cpf);
-
-        return $user;
-    }
-
-
-
 }
