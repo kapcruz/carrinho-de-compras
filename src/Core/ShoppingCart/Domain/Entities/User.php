@@ -6,8 +6,13 @@ use InvalidArgumentException;
 
 class User
 {
+
+    const ROLE_ADMIN = 0;
+    const ROLE_USER = 1;
+
     private Cpf $cpf;
 
+    private int $id;
     private string $name;
     private string $email;
     private string $phone;
@@ -16,11 +21,23 @@ class User
     private int $status;
     private array $address;
 
-    public function __construct(string $name, string $email, Cpf $cpf)
+    public function __construct(string $name, string $email, Cpf $cpf, int $role)
     {
         $this->name = $name;
         $this->email = $email;
         $this->cpf = $cpf;
+        $this->role = $role;
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setId(int $id)
+    {
+        $this->id = $id;
+        return $this;
     }
 
     public function getName()
@@ -99,4 +116,16 @@ class User
     {
         return $this->address;
     }
+
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    public function setRole(int $role)
+    {
+        $this->role = $role;
+        return $this;
+    }
+
 }
