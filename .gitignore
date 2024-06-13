@@ -2,3 +2,5 @@
 .env
 vendor
 phpdocker/mysql/*
+!phpdocker/mysql/.gitkeep
+
