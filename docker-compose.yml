@@ -1,9 +1,7 @@
-###############################################################################
-#                          Generated on phpdocker.io                          #
-###############################################################################
 version: '3.1'
 services:
-    mariadb:
+    mariadb-cart:
+        container_name: mariadb-cart
         image: 'mariadb:latest'
         working_dir: /application
         volumes:
@@ -14,7 +12,8 @@ services:
             - MARIADB_PASSWORD=1234
         ports:
             - '11002:3306'
-    phpmyadmin:
+    phpmyadmin-cart:
+        container_name: phpmyadmin-cart
         image: phpmyadmin:latest
         restart: always
         ports:
@@ -22,7 +21,8 @@ services:
         environment:
             - PMA_ARBITRARY=1
 
-    webserver:
+    nginx-cart:
+        container_name: nginx-cart
         image: 'nginx:alpine'
         working_dir: /application
         volumes:
@@ -31,7 +31,8 @@ services:
         ports:
             - '11000:80'
 
-    php-fpm:
+    php-fpm-cart:
+        container_name: php-fpm-cart
         build: phpdocker/php-fpm
         working_dir: /application
         volumes:
