@@ -5,12 +5,10 @@ namespace App\Core\ShoppingCart\Domain\Entities;
 use InvalidArgumentException;
 
 use App\Core\ShoppingCart\Domain\ValueObject\Role;
+use App\Core\ShoppingCart\Domain\ValueObject\Status;
 
 class User
 {
-    const ROLE_ADMIN = 1;
-    const ROLE_USER = 2;
-
     private Cpf $cpf;
 
     private int $id;
@@ -19,15 +17,16 @@ class User
     private string $phone;
     private string $cell_phone;
     private Role $role;
-    private int $status;
+    private Status $status;
     private array $address;
 
-    public function __construct(string $name, string $email, Cpf $cpf, Role $role)
+    public function __construct(string $name, string $email, Cpf $cpf, Role $role, Status $status)
     {
         $this->name = $name;
         $this->email = $email;
         $this->cpf = $cpf;
         $this->role = $role;
+        $this->status = $status;
     }
 
     public function getId()
@@ -127,11 +126,28 @@ class User
     {
         if(!$role->isAdmin() || !$role->isUser() || empty($role->getValue()))
         {
-            throw new \InvalidArgumentException("O papel inválido ou inexistente.");
+            throw new \InvalidArgumentException("Papel inválido ou inexistente.");
         }
         
         $this->role = $role;
         return $this;
     }
+
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    public function setStatus(Status $status)
+    {
+        if(!$status->isEnable() || !$status->isDisable() || empty($status->getValue()))
+        {
+            throw new \InvalidArgumentException("Status inválido ou inexistente.");
+        }
+        
+        $this->status = $status;
+        return $this;
+    }
+
 
 }

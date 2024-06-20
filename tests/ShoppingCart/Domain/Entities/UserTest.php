@@ -7,6 +7,7 @@ use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use App\Core\ShoppingCart\Domain\Entities\User;
 use App\Core\ShoppingCart\Domain\ValueObject\Role;
+use App\Core\ShoppingCart\Domain\ValueObject\Status;
 
 class UserTest extends TestCase
 {
@@ -51,7 +52,8 @@ class UserTest extends TestCase
         $email = 'robert_garcia@email.com'; 
         $cpf = new Cpf('64761343028');
         $role = new Role(1);
-        $user = new User($name, $email, $cpf, $role);
+        $status = new Status(1);
+        $user = new User($name, $email, $cpf, $role, $status);
         return $user;
     }
 }
