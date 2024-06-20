@@ -4,11 +4,12 @@ namespace App\Core\ShoppingCart\Domain\Entities;
 
 use InvalidArgumentException;
 
+use App\Core\ShoppingCart\Domain\ValueObject\Role;
+
 class User
 {
-
-    const ROLE_ADMIN = 0;
-    const ROLE_USER = 1;
+    const ROLE_ADMIN = 1;
+    const ROLE_USER = 2;
 
     private Cpf $cpf;
 
@@ -17,11 +18,11 @@ class User
     private string $email;
     private string $phone;
     private string $cell_phone;
-    private int $role;
+    private Role $role;
     private int $status;
     private array $address;
 
-    public function __construct(string $name, string $email, Cpf $cpf, int $role)
+    public function __construct(string $name, string $email, Cpf $cpf, Role $role)
     {
         $this->name = $name;
         $this->email = $email;
@@ -122,8 +123,13 @@ class User
         return $this->role;
     }
 
-    public function setRole(int $role)
+    public function setRole(Role $role)
     {
+        if(empty($role->getValue()))
+        {
+            throw new \InvalidArgumentException("O papel inválido ou inexistente.");
+        }
+        
         $this->role = $role;
         return $this;
     }

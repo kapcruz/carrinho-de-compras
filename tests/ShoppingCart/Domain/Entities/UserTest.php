@@ -6,12 +6,10 @@ use App\Core\ShoppingCart\Domain\Entities\Cpf;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use App\Core\ShoppingCart\Domain\Entities\User;
+use App\Core\ShoppingCart\Domain\ValueObject\Role;
 
 class UserTest extends TestCase
 {
-
-    
-
     private User $user;
 
     public function setUp(): void
@@ -52,7 +50,8 @@ class UserTest extends TestCase
         $name = 'Robert Garcia';
         $email = 'robert_garcia@email.com'; 
         $cpf = new Cpf('64761343028');
-        $user = new User($name, $email, $cpf);
+        $role = new Role(1);
+        $user = new User($name, $email, $cpf, $role);
         return $user;
     }
 }
