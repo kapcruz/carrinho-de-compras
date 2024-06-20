@@ -125,7 +125,7 @@ class User
 
     public function setRole(Role $role)
     {
-        if(empty($role->getValue()))
+        if(!$role->isAdmin() || !$role->isUser() || empty($role->getValue()))
         {
             throw new \InvalidArgumentException("O papel inválido ou inexistente.");
         }
