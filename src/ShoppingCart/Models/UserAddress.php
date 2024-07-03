@@ -7,9 +7,10 @@ class UserAddress extends \Illuminate\Database\Eloquent\Model {
 
     use SoftDeletes;
 
-    protected $table = 'users';
+    protected $table = 'user_address';
 
     protected $fillable = [
+        "id_user",
         "city",
         "state",
         "district",
@@ -19,5 +20,6 @@ class UserAddress extends \Illuminate\Database\Eloquent\Model {
         "number",
         "reference",
     ];
+    
 }
 

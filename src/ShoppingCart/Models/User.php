@@ -10,13 +10,18 @@ class User extends \Illuminate\Database\Eloquent\Model {
     protected $table = 'users';
 
     protected $fillable = [
-        "name"
-        "email"
-        "phone"
-        "cell_phone"
-        "cpf"
-        "role"
+        "name",
+        "email",
+        "phone",
+        "cell_phone",
+        "cpf",
+        "role",
         "status"
     ];
+    
+    public function userAddress()
+    {
+        return $this->hasMany(UserAddress::class, 'id_user', 'id');
+    }
 }
 
