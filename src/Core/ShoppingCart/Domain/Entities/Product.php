@@ -12,14 +12,16 @@ class Product
     private string $image = '';
     private int $quantity = 0;
     private string $code = '';
+    private int $id;
 
-    public function __construct(string $name, float $price, string $image, int $quantity, string $code)
+    public function __construct(string $name, float $price, string $image, int $quantity, string $code, int $id = 0)
     {
         $this->name = $name;
         $this->price = $price;
         $this->image = $image;
         $this->quantity = $quantity;
         $this->code = $code;
+        $this->id = $id;
     }
 
     public function setName(string $name)
@@ -150,5 +152,16 @@ class Product
     public function getCode(): string
     {
         return $this->code;
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
     }
 }

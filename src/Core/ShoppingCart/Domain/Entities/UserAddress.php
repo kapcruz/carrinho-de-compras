@@ -14,6 +14,7 @@ class UserAddress
     private string $address;
     private string $number;
     private string $reference;
+    private int $id;
 
     public function __construct(
         string $city,
@@ -23,7 +24,8 @@ class UserAddress
         string $complement,
         string $address,
         string $number,
-        string $reference
+        string $reference,
+        int $id = 0
     ) {
         $this->city = $city;
         $this->state = $state;
@@ -33,6 +35,7 @@ class UserAddress
         $this->address = $address;
         $this->number = $number;
         $this->reference = $reference;
+        $this->id = $id;
     }
 
     public function getCity()
@@ -134,5 +137,16 @@ class UserAddress
     public function setReference(string $reference)
     {
         return $this->reference = $reference;
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
     }
 }
