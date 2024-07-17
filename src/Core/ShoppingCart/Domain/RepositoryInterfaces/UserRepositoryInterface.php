@@ -1,10 +1,10 @@
 <?php
 
-namespace Core\ShoppingCart\Domain\RepositoryInterfaces;
+namespace App\Core\ShoppingCart\Domain\RepositoryInterfaces;
 
 use App\Core\ShoppingCart\Domain\Entities\User;
 
-interface UserReposirotyInterface
+interface UserRepositoryInterface
 {
     public function create(User $user);
     public function update(User $user);

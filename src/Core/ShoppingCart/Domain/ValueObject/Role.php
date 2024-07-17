@@ -23,7 +23,7 @@ class Role
         return $this->role;
     }
 
-    public function setRole(int $role):int
+    public function setRole(int $role)
     {
         $this->role = $role;
         return $this;

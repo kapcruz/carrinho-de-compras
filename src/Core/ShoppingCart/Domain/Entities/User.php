@@ -14,11 +14,11 @@ class User
     private int $id;
     private string $name;
     private string $email;
-    private string $phone;
-    private string $cell_phone;
     private Role $role;
     private Status $status;
     private array $address;
+    private string $phone = '';
+    private string $cell_phone = '';
 
     public function __construct(string $name, string $email, Cpf $cpf, Role $role, Status $status)
     {

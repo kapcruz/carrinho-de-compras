@@ -6,10 +6,10 @@ use App\Core\ShoppingCart\Domain\Entities\Cpf;
 use App\Core\ShoppingCart\Domain\Entities\User;
 use App\Core\ShoppingCart\Domain\ValueObject\Role;
 use App\Core\ShoppingCart\Domain\ValueObject\Status;
-use Core\ShoppingCart\Application\Repositories\UserRepository;
-use PHPUnit\Framework\TestCase;
+use App\Core\ShoppingCart\Application\Repositories\UserRepository;
+use AppTest\ShoppingCartTestCase;
 
-class UserRepositoryTest extends TestCase
+class UserRepositoryTest extends ShoppingCartTestCase
 {
     public function testCreateNewUser()
     {
@@ -18,8 +18,8 @@ class UserRepositoryTest extends TestCase
             'Fernando',
             'fernando@email.com',
             new Cpf('05707573046'),
-            new Role(Role::ADMIN),
-            new Status(Status::ENABLE)
+            new Role(Role::ROLE_ADMIN),
+            new Status(Status::STATUS_ENABLE)
         );
         $userRepository->create($user);
     }

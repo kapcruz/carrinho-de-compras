@@ -1,15 +1,15 @@
 <?php
 
-namespace Core\ShoppingCart\Application\Repositories;
+namespace App\Core\ShoppingCart\Application\Repositories;
 
 use App\Core\ShoppingCart\Domain\Entities\Cpf;
 use App\Core\ShoppingCart\Domain\Entities\User;
 use App\Core\ShoppingCart\Domain\ValueObject\Role;
 use App\Core\ShoppingCart\Domain\ValueObject\Status;
 use App\ShoppingCart\Models\User as UserModel;
-use Core\ShoppingCart\Domain\RepositoryInterfaces\UserReposirotyInterface;
+use App\Core\ShoppingCart\Domain\RepositoryInterfaces\UserRepositoryInterface;
 
-class UserRepository implements UserReposirotyInterface
+class UserRepository implements UserRepositoryInterface
 {
     private UserModel $userModel;
 
@@ -25,9 +25,9 @@ class UserRepository implements UserReposirotyInterface
         $userModel->email = $user->getEmail();
         $userModel->phone = $user->getPhone();
         $userModel->cell_phone = $user->getCellPhone();
-        $userModel->cpf = $user->getCpf();
-        $userModel->role = $user->getRole();
-        $userModel->status = $user->getStatus();
+        $userModel->cpf = $user->getCpf()->getCpf();
+        $userModel->role = $user->getRole()->getValue();
+        $userModel->status = $user->getStatus()->getValue();
         $userModel->save();
     }
 
