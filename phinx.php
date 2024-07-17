@@ -23,12 +23,12 @@ return
         ],
         'testing' => [
             'adapter' => 'mysql',
-            'host' => 'localhost',
-            'name' => 'testing_db',
-            'user' => 'root',
-            'pass' => '',
-            'port' => '3306',
-            'charset' => 'utf8',
+            'name' => $_ENV['MARIADB_TEST_DATABASE'],
+            'host' => $_ENV['MARIADB_TEST_HOST'],
+            'user' => $_ENV['MARIADB_TEST_USER'],
+            'pass' => $_ENV['MARIADB_TEST_PASSWORD'],
+            'port' => $_ENV['MARIADB_TEST_PORT'],
+            'charset' => $_ENV['MARIADB_TEST_CHARSET']
         ]
     ],
     'version_order' => 'creation'
