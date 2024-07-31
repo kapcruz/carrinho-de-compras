@@ -10,6 +10,7 @@ use App\Core\ShoppingCart\Domain\ValueObject\Role;
 use App\Core\ShoppingCart\Domain\ValueObject\Status;
 use App\Core\ShoppingCart\Application\Repositories\UserRepository;
 use App\Core\ShoppingCart\Application\Repositories\UserAddressRepository;
+use App\Core\ShoppingCart\Domain\Entities\UserAddress;
 use AppTest\ShoppingCartTestCase;
 
 class UserRepositoryTest extends ShoppingCartTestCase
@@ -59,21 +60,20 @@ class UserRepositoryTest extends ShoppingCartTestCase
         $userModel = UserModel::where('email', 'fernando1@email.com')->get()->first();
         $this->assertNotNull($userModel);
 
-        $user->setAddress([
-            'id_user' => $userModel->id,
-            'city' => 'Brasilia',
-            'state' => 'DF',
-            'district' => 'Samambaia Sul',
-            'zip_code' => '72306-613',
-            'address' => 'Quadra QR 308 Conjunto 13',
-            'complement' => 'APT 200',
-            'number' => '13',
-            'reference' => 'Na esquina do fi de vó'
-        ]);
-        $address = $user->getAddress();
+        $userAddressEntity = new UserAddress(
+            'Brasilia',
+            'DF',
+            'Samambaia Sul',
+            '72306-613',
+            'APT 200',
+            'Quadra QR 308 Conjunto 13',
+            '13',
+            'Na esquina do fi de vó',
+            $userModel->id
+        );
 
         $userAddressRepository =  new UserAddressRepository();
-        $userAddressRepository->create($address);
+        $userAddressRepository->create($userAddressEntity);
 
         $userAddress = UserAddressModel::where('id_user', $userModel->id)->get()->first();
 

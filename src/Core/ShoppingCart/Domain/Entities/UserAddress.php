@@ -15,6 +15,8 @@ class UserAddress
     private string $number;
     private string $reference;
     private int $id;
+    private int $idUser;
+
 
     public function __construct(
         string $city,
@@ -25,6 +27,7 @@ class UserAddress
         string $address,
         string $number,
         string $reference,
+        int $idUser,
         int $id = 0
     ) {
         $this->city = $city;
@@ -35,6 +38,7 @@ class UserAddress
         $this->address = $address;
         $this->number = $number;
         $this->reference = $reference;
+        $this->idUser = $idUser;
         $this->id = $id;
     }
 
@@ -147,6 +151,17 @@ class UserAddress
     public function setId($id)
     {
         $this->id = $id;
+        return $this;
+    }
+
+    public function getIdUser()
+    {
+        return $this->idUser;
+    }
+
+    public function setIdUser($idUser)
+    {
+        $this->idUser = $idUser;
         return $this;
     }
 }

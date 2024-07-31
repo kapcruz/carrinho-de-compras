@@ -15,13 +15,19 @@ class UserAddressRepository implements UserAddressRepositoryInterface
         $this->userAddressModel = new userAddressModel();
     }
 
-    public function create(userAddressModel $address)
+    public function create(UserAddress $address)
     {
-        print_r($address);
-        exit();
-      /*   $userAddressModel = $this->userAddressModel;
-        $userAddressModel->id_user = $user->getName();
-        $userAddressModel->save(); */
+        $userAddressModel = $this->userAddressModel;
+        $userAddressModel->id_user = $address->getidUser();
+        $userAddressModel->city = $address->getCity();
+        $userAddressModel->state = $address->getState();
+        $userAddressModel->district = $address->getDistrict();
+        $userAddressModel->zip_code = $address->getZipCode();
+        $userAddressModel->address = $address->getAddress();
+        $userAddressModel->complement = $address->getComplement();
+        $userAddressModel->number = $address->getNumber();
+        $userAddressModel->reference = $address->getReference();
+        $userAddressModel->save();
     }
 
 
