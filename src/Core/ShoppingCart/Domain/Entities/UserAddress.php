@@ -161,6 +161,10 @@ class UserAddress
 
     public function setIdUser($idUser)
     {
+        if (empty($idUser)) {
+            throw new InvalidArgumentException('O id do usuário é obrigatório.');
+        }
+
         $this->idUser = $idUser;
         return $this;
     }
